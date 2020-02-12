@@ -1,10 +1,10 @@
 ## users テーブル
 
-| Column   | Type   | Options    |
-| -------- | ------ | ---------- |
-| name     | string | null:false |
-| email    | string | null:false |
-| password | string | null:false |
+| Column   | Type   | Options                |
+| -------- | ------ | ---------------------- |
+| name     | string | null:false,index:true  |
+| email    | string | null:false,unique:true |
+| password | string | null:false             |
 
 ### Association
 
@@ -26,10 +26,10 @@
 
 ## groups_users テーブル
 
-| Column   | Type      | Options                        |
-| -------- | --------- | ------------------------------ |
-| user_id  | reference | null: false, foreign_key: true |
-| group_id | reference | null: false, foreign_key: true |
+| Column | Type      | Options                        |
+| ------ | --------- | ------------------------------ |
+| user   | reference | null: false, foreign_key: true |
+| group  | reference | null: false, foreign_key: true |
 
 ### Association
 
@@ -40,8 +40,8 @@
 
 | Column | Type      | Options                     |
 | ------ | --------- | --------------------------- |
-| text   | text      | null:false                  |
-| image  | text      | null:true                   |
+| text   | text      |                             |
+| image  | text      |                             |
 | user   | reference | null:false,foreign_key:true |
 | group  | reference | null:false.foreign_key:true |
 
