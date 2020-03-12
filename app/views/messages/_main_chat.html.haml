@@ -1,1 +1,38 @@
-<チャット画面>
+.chat-main
+  .main-header
+    .main-header__left-box
+      %h2.main-header__left-box__current-group
+        グループ
+      %ul.main-header__left-box__member-list
+        Member：
+        %li.main-header__left-box__member-list__member
+          テストネーム
+    .main-header__edit-btn
+      = link_to "Edit","groups/edit"
+
+  .messages
+    .message
+      .message__upper-info
+        %p.message__upper-info__talker
+          投稿者
+        %p.message__upper-info__date
+          YYYY/MM/DD(WW) TIMESTAMP
+      %p.message__text
+        テキスト
+    .message
+      .message__upper-info
+        %p.message__upper-info__talker
+          投稿者２
+        %p.message__upper-info__date
+          YYYY/MM/DD(WW) TIMESTAMP
+      %p.message__text
+        テキスト２
+  .form
+    .input-box
+      .input-box__message
+        %input{class:"text",type:"text",placeholder:"type a message"}
+        %label{class:"image"}
+          = icon('fas', 'image')
+          %input{class:"btn",type:"file"}
+      .input-box__submit
+        %input{class:"btn",type:"submit",value:"Send"}
