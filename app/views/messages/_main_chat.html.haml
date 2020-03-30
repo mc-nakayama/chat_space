@@ -2,37 +2,24 @@
   .main-header
     .main-header__left-box
       %h2.main-header__left-box__current-group
-        グループ
+        = @group.name
       %ul.main-header__left-box__member-list
         Member：
         %li.main-header__left-box__member-list__member
-          テストネーム
+          - @group.users.each do |user|
+            = user.name
+            
     .main-header__edit-btn
-      = link_to "Edit","groups/edit"
+      = link_to "Edit", edit_group_path(@group)
 
   .messages
-    .message
-      .message__upper-info
-        %p.message__upper-info__talker
-          投稿者
-        %p.message__upper-info__date
-          YYYY/MM/DD(WW) TIMESTAMP
-      %p.message__text
-        テキスト
-    .message
-      .message__upper-info
-        %p.message__upper-info__talker
-          投稿者２
-        %p.message__upper-info__date
-          YYYY/MM/DD(WW) TIMESTAMP
-      %p.message__text
-        テキスト２
+    = render @messages
+
   .form
-    .input-box
-      .input-box__message
-        %input{class:"text",type:"text",placeholder:"type a message"}
-        %label{class:"image"}
-          = icon('fas', 'image')
-          %input{class:"btn",type:"file"}
-      .input-box__submit
-        %input{class:"btn",type:"submit",value:"Send"}
+    = form_for [@group, @message] do |f|
+      = f.text_field :text, class: 'form__message', placeholder: 'type a message'
+      .form__mask
+        = f.label :image, class: 'form__image' do
+          = icon('fas', 'image', class: 'icon')
+          = f.file_field :image, class: 'hidden'
+      = f.submit 'Send', class: 'form__submit'
